@@ -1,3 +1,10 @@
+const numbers = document.querySelectorAll(".number")
+const operators = document.querySelectorAll(".operator")
+const display = document.querySelector(".display")
+
+let firstNumber = "";
+let operator = "";
+
 function add(a, b) {
     let c = a + b;
     return c;
@@ -30,4 +37,30 @@ function operate(operator, num1, num2) {
     }
 }
 
-console.log(operate("/", 4, 5));
+function getOperator(operatorValue) {
+    operator = operatorValue;
+    console.log(operator);
+}
+
+function updateDisplay(number) {
+    display.textContent += number;
+    firstNumber = display.textContent;
+}
+
+
+numbers.forEach(number =>{
+    number.addEventListener("click", function(){
+        let numberValue = number.value;
+        updateDisplay(numberValue);
+    })
+})
+
+operators.forEach(operator =>{
+    operator.addEventListener("click", function(){
+        let operatorValue = operator.value;
+        getOperator(operatorValue);
+    })
+})
+
+
+
