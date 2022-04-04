@@ -1,0 +1,39 @@
+
+body {
+	min-height: 100vh;
+}
+.container {
+	display: flex;
+	align-items: center;
+	flex-direction: column;
+	margin-top: 20%;
+}
+
+.display {
+	background: #DCDCDC;
+	height: 35px;
+	width: 160px;
+	text-align: right;
+	display: table-cell;
+ 	vertical-align: bottom
+}
+
+.first-row, .second-row, .third-row, .fourth-row , .fifth-row {
+	display: flex;
+}
+
+.clear {
+	width: 120px;;
+}
+
+#zero {
+	width: 80px
+}
+
+button {
+	margin: 0;
+	border: 1px solid black;
+	height: 65px;
+	width: 40px;
+	font-size: large;
+}
