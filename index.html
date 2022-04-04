@@ -5,7 +5,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="javascript.js" defer></script>
-    <title>Calulator</title>
+    <link rel="stylesheet" href="style.css">
+    <title>Calculator</title>
 </head>
 <body>
     <div class="container">    
@@ -13,7 +14,7 @@
             <div class="display"></div>
         </div>
         <div class="first-row">
-            <button class="clear" type="button" value="clear">clear</button>
+            <button class="clear" type="button" value="clear">CLEAR</button>
             <button class="operator" type="button" value="/">%</button>
         </div>    
         <div class="second-row">
@@ -34,10 +35,11 @@
             <button class="number" type="button" value="3">3</button>
             <button class="operator" type="button" value="+">+</button>
         </div>
-        <div class="fifth-row"></div>
-            <button class="number" type="button" value="0">0</button>
+        <div class="fifth-row">
+            <button class="number" id="zero" type="button" value="0">0</button>
             <button class="decimal" type="button" value=".">.</button>
-            <button class="equal" type="equal" value="=">=</button>       
+            <button class="equal" type="equal" value="=">=</button>      
+        </div> 
     </div> 
 </body>
 </html>
