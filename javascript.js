@@ -7,7 +7,7 @@ const decimal = document.querySelector(".decimal");
 const backspace = document.querySelector(".backspace");
 
 let firstNumber = "";
-let secondNumber = "";
+let displayedNumber = "";
 let chosenOperator = "";
 let result = "";
 let displayContent = "";
@@ -17,37 +17,37 @@ operators.forEach(operator =>{
     operator.addEventListener("click", function(){
         if (chosenOperator == ""  && firstNumber == "" ) {
             chosenOperator = operator.value;
-            firstNumber = secondNumber;
-            secondNumber = "" ;
+            firstNumber = displayedNumber;
+            displayedNumber = "" ;
             display.textContent += operator.value
         } else if (chosenOperator !== ""  && firstNumber !== "" ) {
             calculate();
             chosenOperator = operator.value
             firstNumber = result;
-            secondNumber = "" ;
+            displayedNumber = "" ;
             display.textContent += operator.value
         } 
     })
 })
 
-
+//firstNumber is used to store the first number of an operation while displayedNumber is the number displayed and the second number of an operation.
 numbers.forEach(number =>{
     number.addEventListener("click", function(){
-        if (chosenOperator !== ""  && secondNumber == "") {
+        if (chosenOperator !== ""  && displayedNumber == "") {
             display.textContent = "" ;
-            getFirstNumber(number.value);
+            getNumber(number.value);
         } else if (finalResult !== "") {
             clear();
-            getFirstNumber(number.value);
+            getNumber(number.value);
         } else {
-            getFirstNumber(number.value);
+            getNumber(number.value);
         }   
     })
 })
 
-function getFirstNumber(num) {
+function getNumber(num) {
     display.textContent += num;
-    secondNumber += num;
+    displayedNumber += num;
 }
 
 function operate(operator, num1, num2) {
@@ -75,7 +75,7 @@ function operate(operator, num1, num2) {
 }
 
 function calculate() {
-    operate(chosenOperator, Number(firstNumber), Number(secondNumber));
+    operate(chosenOperator, Number(firstNumber), Number(displayedNumber));
     display.textContent = result;
 }
 
@@ -88,7 +88,7 @@ decimal.addEventListener("click", function() {
     if (display.textContent.includes(".")) {
         return;
     } else {
-        getFirstNumber(decimal.value);
+        getNumber(decimal.value);
     }
 });
 
@@ -97,15 +97,15 @@ clearButton.addEventListener("click", function(){
 });
 
 backspace.addEventListener("click", () => {
-    if(secondNumber !== "") {
-        secondNumber = secondNumber.slice(0, -1);
-        display.textContent = secondNumber;
+    if(displayedNumber !== "") {
+        displayedNumber = displayedNumber.slice(0, -1);
+        display.textContent = displayedNumber;
     }
 })
 
 function clear() {
     firstNumber = "" ;
-    secondNumber= "" ;
+    displayedNumber= "" ;
     chosenOperator = "" ;
     result = "" ;
     finalResult = "";
