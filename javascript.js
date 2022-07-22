@@ -4,6 +4,7 @@ const display = document.querySelector(".display");
 const equal = document.querySelector(".equal");
 const clearButton = document.querySelector(".clear");
 const decimal = document.querySelector(".decimal");
+const backspace = document.querySelector(".backspace");
 
 let firstNumber = "";
 let secondNumber = "";
@@ -29,17 +30,17 @@ operators.forEach(operator =>{
     })
 })
 
+
 numbers.forEach(number =>{
     number.addEventListener("click", function(){
-        let numberValue = number.value
         if (chosenOperator !== ""  && secondNumber == "") {
             display.textContent = "" ;
-            getFirstNumber(numberValue);
+            getFirstNumber(number.value);
         } else if (finalResult !== "") {
             clear();
-            getFirstNumber(numberValue);
+            getFirstNumber(number.value);
         } else {
-            getFirstNumber(numberValue);
+            getFirstNumber(number.value);
         }   
     })
 })
@@ -74,9 +75,7 @@ function operate(operator, num1, num2) {
 }
 
 function calculate() {
-    num1 = Number(firstNumber);
-    num2 = Number(secondNumber);
-    operate(chosenOperator, num1, num2);
+    operate(chosenOperator, Number(firstNumber), Number(secondNumber));
     display.textContent = result;
 }
 
@@ -96,6 +95,13 @@ decimal.addEventListener("click", function() {
 clearButton.addEventListener("click", function(){
     clear();
 });
+
+backspace.addEventListener("click", () => {
+    if(secondNumber !== "") {
+        secondNumber = secondNumber.slice(0, -1);
+        display.textContent = secondNumber;
+    }
+})
 
 function clear() {
     firstNumber = "" ;
