@@ -18,11 +18,13 @@ operators.forEach(operator =>{
             chosenOperator = operator.value;
             firstNumber = secondNumber;
             secondNumber = "" ;
+            display.textContent += operator.value
         } else if (chosenOperator !== ""  && firstNumber !== "" ) {
             calculate();
             chosenOperator = operator.value
             firstNumber = result;
             secondNumber = "" ;
+            display.textContent += operator.value
         } 
     })
 })
@@ -41,7 +43,6 @@ numbers.forEach(number =>{
         }   
     })
 })
-
 
 function getFirstNumber(num) {
     display.textContent += num;
@@ -83,7 +84,6 @@ equal.addEventListener("click", function(){
     calculate();
     finalResult = result;
 });
-
 
 decimal.addEventListener("click", function() {
     if (display.textContent.includes(".")) {
