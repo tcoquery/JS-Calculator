@@ -7,61 +7,30 @@ const decimal = document.querySelector(".decimal");
 
 let firstNumber = "";
 let secondNumber = "";
-let operatortest = "";
+let chosenOperator = "";
 let result = "";
 let displayContent = "";
 let finalResult = "";
 
-function operate(operator, num1, num2) {
-    if (operator == "+") {
-        return num1 + num2;        
-    } else if (operator == "-") {
-        return num1 - num2;        
-    } else if (operator == "*") {
-        return num1 * num2;        
-    } else if (operator == "/") {
-        if (num2 == 0) {
-            return alert("nice try"); 
-        } else {
-        return num1 / num2;
-        }
-    }
-}
-
 operators.forEach(operator =>{
     operator.addEventListener("click", function(){
-        if (operatortest == ""  && firstNumber == "" ) {
-            operatortest = operator.value;
+        if (chosenOperator == ""  && firstNumber == "" ) {
+            chosenOperator = operator.value;
             firstNumber = secondNumber;
             secondNumber = "" ;
-        } else if (operatortest !== ""  && firstNumber !== "" ) {
+        } else if (chosenOperator !== ""  && firstNumber !== "" ) {
             calculate();
-            operatortest = operator.value
+            chosenOperator = operator.value
             firstNumber = result;
             secondNumber = "" ;
         } 
     })
 })
 
-
-function getFirstNumber(a) {
-    display.textContent += a;
-    secondNumber += a;
-}
-
-function clear() {
-    firstNumber = "" ;
-    secondNumber= "" ;
-    operatortest = "" ;
-    result = "" ;
-    finalResult = "";
-    display.textContent = "" ;
-}
-
 numbers.forEach(number =>{
     number.addEventListener("click", function(){
         let numberValue = number.value
-        if (operatortest !== ""  && secondNumber == "") {
+        if (chosenOperator !== ""  && secondNumber == "") {
             display.textContent = "" ;
             getFirstNumber(numberValue);
         } else if (finalResult !== "") {
@@ -74,10 +43,39 @@ numbers.forEach(number =>{
 })
 
 
+function getFirstNumber(num) {
+    display.textContent += num;
+    secondNumber += num;
+}
+
+function operate(operator, num1, num2) {
+    switch(operator) {
+        case "+":
+            result = (num1 + num2).toString();   
+            break;
+        case "-":
+            result = (num1 - num2).toString();   
+            break;  
+        case "*":
+            result = (num1 * num2).toString();      
+            break;  
+        case "/":
+            if (num2 == 0) {
+                alert("Let's not break your computer"); 
+                clear();
+            } else {
+                result = (num1 / num2).toString();   
+            }   
+            break;
+        default:
+            return 
+    } 
+}
+
 function calculate() {
     num1 = Number(firstNumber);
     num2 = Number(secondNumber);
-    result = operate(operatortest, num1, num2);
+    operate(chosenOperator, num1, num2);
     display.textContent = result;
 }
 
@@ -87,16 +85,29 @@ equal.addEventListener("click", function(){
 });
 
 
-
-clearButton.addEventListener("click", function(){
-    clear();
-});
-
 decimal.addEventListener("click", function() {
     if (display.textContent.includes(".")) {
         return;
     } else {
         getFirstNumber(decimal.value);
     }
-    
 });
+
+clearButton.addEventListener("click", function(){
+    clear();
+});
+
+function clear() {
+    firstNumber = "" ;
+    secondNumber= "" ;
+    chosenOperator = "" ;
+    result = "" ;
+    finalResult = "";
+    display.textContent = "" ;
+}
+
+
+
+
+
+
