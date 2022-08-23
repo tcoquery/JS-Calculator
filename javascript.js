@@ -45,9 +45,29 @@ numbers.forEach(number =>{
     })
 })
 
+document.addEventListener('keypress', (event) => {
+    const name = event.key;
+    if(name >= "0" && name <= "9") {
+        if (chosenOperator !== ""  && displayedNumber == "") {
+            display.textContent = "" ;
+            getNumber(name);
+        } else if (finalResult !== "") {
+            clear();
+            getNumber(name);
+        } else {
+            getNumber(name);
+        }   
+    }
+});
+  
+
 function getNumber(num) {
-    display.textContent += num;
-    displayedNumber += num;
+    if(display.textContent.length > 15) {
+        return
+    } else {
+        display.textContent += num;
+        displayedNumber += num;
+    }
 }
 
 function operate(operator, num1, num2) {
